@@ -42,6 +42,21 @@ In summary, the main use case that make Rust attractive is when you need to deve
 
 Another important use case to mention is when you need to develop in **WebAssembly**. Rust is widely used for that purpose: has very small runtime, generates very efficient wasm code and the Rust WebAssembly tooling is very mature.
 
-
-
-
+## Resources
+* Text resources:
+    * [Getting started](https://www.rust-lang.org/learn/get-started): how to install Rust in your machine.
+    * [Rust By Example](https://doc.rust-lang.org/rust-by-example/): a collection of runnable examples that illustrate various Rust concepts.
+    * [The Rust Programming Language](https://doc.rust-lang.org/book/): the official reference book.
+* YouTube Videos:
+    * [Rust: A Language for the Next 40 Years](): Carol Nichols, Rust Core Team developer, explains the motivation for the creation of Rust.
+    * [Rust at Microsoft](https://www.youtube.com/watch?v=NQBVUjdkLAA): Ryan Levick explains why they, at Microsoft, are becoming more interested in Rust and why they see it as a potential game changer.
+    * [Rust in the Browser for JavaScripters](https://www.youtube.com/watch?v=ohuTy8MmbLc): introduction of Rust for WebAssembly.
+    * [Understanding Ownership in Rust](https://www.youtube.com/watch?v=VFIOSWy93H0): detailed explanation of how memory ownership and borrowing works in Rust.
+* Repositories:
+    * [Awesome Rust](https://github.com/rust-unofficial/awesome-rust): a curated list of Rust code and resources.
+    * [Actix Web](https://github.com/actix/actix-web): powerful, pragmatic, and extremely fast web framework.
+    * [Diesel](https://github.com/diesel-rs/diesel): safe, extensible ORM and Query Builder.
+    * [Tokio](https://github.com/tokio-rs/tokio): runtime for writing reliable, asynchronous, and slim applications.
+    * Error handling libraries:
+        * [thiserror](https://github.com/dtolnay/thiserror): a convenient macro to declare custom errors
+        * [anyhow](https://github.com/dtolnay/anyhow): easy idiomatic error handling
