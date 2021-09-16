@@ -21,7 +21,7 @@ To address this, Rust was designed by Mozilla Research's Graydon Hore, with cont
 Today, [Rust is considered the most-loved language among developers](https://insights.stackoverflow.com/survey/2021#technology-most-loved-dreaded-and-wanted) and is [used in production by many companies and products](https://www.rust-lang.org/production/users), including Mozilla Firefox, multiple Microsoft products, Dropbox, Discord, Coursera, Tor and recently even [in the Linux Kernel](https://security.googleblog.com/2021/04/rust-in-linux-kernel.html).
 
 Rust was able to achieve **top performance and top safety** at the same time. But of course nothing is perfect, and Rust has its downsides as well.
-The main downside of Rust is language ergonomics: assume that **any program written in Rust will be more verbose and difficult to write and understand** that if it was written in a high-level language.
+The main downside of Rust is language ergonomics: assume that **any program written in Rust will be more difficult to write and understand** that if it was written in a high-level language. Also, the **learning curve** is very hard in Rust, as new developers need to understand memory management concepts like *ownership*, *borrowing* or *lifetimes*. 
 
 ### Rust vs Go
 
@@ -41,6 +41,21 @@ In summary, the main use case that make Rust attractive is when you need to deve
 * Anywhere else you would need systems programming, like browser engines.
 
 Another important use case to mention is when you need to develop in **WebAssembly**. Rust is widely used for that purpose: has very small runtime, generates very efficient wasm code and the Rust WebAssembly tooling is very mature.
+
+## Exercises
+We will take a look a some basic examples of Rust code, to showcase the basic features of the language. For this section there is no need to have Rust installed in you machine, you can simple use [**the online rust playground**](https://play.rust-lang.org/).
+
+### Hello, world!
+To get things started, lets write the typical Hello World example:
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+```
+Run the above code in the [the online rust playground](https://play.rust-lang.org/). To know how to compile and run this code in a real environment you can check the [Rust reference](https://doc.rust-lang.org/book/ch01-02-hello-world.html).
+
+The example defines a function in Rust. The `main` function is special: it is always the first code that runs in every executable Rust program. Here things start to get confusing, as due to limitations in the language we are using `println!` which is a **macro** and not a function (for more information on this, check the [rust refernce book on macros](https://doc.rust-lang.org/book/ch19-06-macros.html#the-difference-between-macros-and-functions)).
+
 
 ## Resources
 * Text resources:
