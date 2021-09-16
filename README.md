@@ -54,7 +54,56 @@ fn main() {
 ```
 Run the above code in the [the online rust playground](https://play.rust-lang.org/). To know how to compile and run this code in a real environment you can check the [Rust reference](https://doc.rust-lang.org/book/ch01-02-hello-world.html).
 
-The example defines a function in Rust. The `main` function is special: it is always the first code that runs in every executable Rust program. Here things start to get confusing, as due to limitations in the language we are using `println!` which is a **macro** and not a function (for more information on this, check the [rust refernce book on macros](https://doc.rust-lang.org/book/ch19-06-macros.html#the-difference-between-macros-and-functions)).
+The example defines a function in Rust. The `main` function is special: it is always the first code that runs in every executable Rust program. Here things start to get confusing, as due to limitations in the language we are using `println!` which is a **macro** and not a function (for more information on this, check the [rust reference book on macros](https://doc.rust-lang.org/book/ch19-06-macros.html#the-difference-between-macros-and-functions)).
+
+### Ownership
+
+The concept that truly separates Rust from other languages is the memory management mechanism called [**ownership**](https://doc.rust-lang.org/book/ch04-01-what-is-ownership.html). The Rust compiler has some very restrictive rules regarding memory (heap):
+* Each memory value in Rust has **one, and only one variable that's called its owner**.
+* There can only be **one owner** at a time.
+* When the owner goes out of scope (i.e. the code block of the variable closes), the memory value will be automatically deleted.
+
+The example code below will fail because of ownership rules. Fix it using the `clone` function to make a copy of the memory value.
+```rust
+fn main() {
+    // fixed size types go into the stack, not the heap, so this does not generate ownership problems
+    let x: i32 = 5;
+    let _y: i32 = x; // this performs a copy
+    
+    // dynamic size types go into the heap, we need to handle ownership
+    // Here, "s1" cannot be assigned directly to "s1" because the mamory value can only have one owner
+    let s1: String = String::from("hello");
+    let _s2: String = s1; // this line will give a compiler error, fix it using the "clone" function
+    
+    println!("{}, world!", s1);
+}
+```
+
+Passing a variable to a function will move or copy, just as assignment does. The example code below will fail because of ownership rules. Fix it by making the `takes_ownership` function return the value and reassign it to the `s` variable. Variables in Rust are inmmutable by default, so you will also need to use the `mut` keyword.
+
+```rust
+fn main() {
+    // s comes into scope
+    let s = String::from("hello");  
+
+    // s's value moves into the function...
+    takes_ownership(s);             
+    
+    // ... and so is no longer valid afterwards
+    // even more, the memory value in the heap is deleted after the call finishes
+   
+    // The below code will fail to compile because the ownership was transferred
+    // Fix it by making "takes_ownership" return the value to the caller...
+    // ... and reassign it to the "s" variable again (hint: you may also need the "mut" keyword)
+    println!("{}, world!", s);
+
+}
+
+fn takes_ownership(some_string: String) { // some_string comes into scope
+    println!("{}", some_string);
+} // Here, some_string goes out of scope and `drop` is called. The backing
+  // memory is freed.
+```
 
 
 ## Resources
