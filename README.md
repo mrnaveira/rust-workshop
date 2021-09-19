@@ -160,11 +160,11 @@ fn takes_ownership(some_string: String) -> String {
 ```
 </details>
 
-The solutions we explored in exercises 2 and 3 are not ideal. Cloning a memory value (exercise 2) has a performance penalty and we lose the ability to modify the original value. Returning the value again (exercise 3) solves those problems but makes the code very difficult to manage when we are manipulatin multiple values. In the next section we will explore a better solution, called **borrowing**.
+The solutions we explored in exercises 2 and 3 are not ideal. Cloning a memory value (exercise 2) has a performance penalty and we lose the ability to modify the original value. Returning the value again (exercise 3) solves those problems but makes the code very difficult to manage when we are manipulating multiple values. In the next section we will explore a better solution, called **borrowing**.
 
 ### Borrowing
 
-[Borrowing](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html) is the action of temporarily use a reference of a value wihout taking ownership of it. With borrowing, we have another way of solving the code of the previous section (exercises 2 and 3).
+[Borrowing](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html) is the action of temporarily use a reference of a value wihout taking ownership of it. With borrowing, we have another way of solving the code of the previous section.
 
 Find below the same problem of ownership of the previous section.
 ```rust
@@ -181,7 +181,7 @@ fn borrow(some_string: String) {
 }
 ```
 #### Exercise 4
-Use [borrowing](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html) to pass a reference of the variable `s` to the function `borrows`.
+Use [borrowing](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html) to pass a reference of the variable `s` to the function `borrow`.
 <details>
   <summary>Solution</summary>
   
