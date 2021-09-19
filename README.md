@@ -78,9 +78,9 @@ fn main() {
     println!("{}, world!", s1);
 }
 ```
-
-#### Exercise 1
-Fix the above code by using [the `clone` function](https://doc.rust-lang.org/std/clone/trait.Clone.html#examples) to make a copy of the memory value.
+<blockquote>
+<h5>Exercise 1</h5>
+<p>Fix the above code by using <a href="https://doc.rust-lang.org/std/clone/trait.Clone.html#examples">the <b>clone</b> function</a> to make a copy of the memory value.</p>
 <details>
   <summary>Solution</summary>
   
@@ -97,6 +97,7 @@ fn main() {
 }
 ```
 </details>
+</blockquote>
 
 Passing a variable to a function will move or copy, just as assignment does. The example code below will fail because of ownership rules. 
 
@@ -122,8 +123,9 @@ fn takes_ownership(some_string: String) { // some_string comes into scope
   // memory is freed.
 ```
 
-#### Exercise 2
-Fix the above code using again the `clone` function to make a copy of the memory value.
+<blockquote>
+<h5>Exercise 2</h5>
+<p>Fix the above code using again the <b>clone</b> function to make a copy of the memory value.</p>
 <details>
   <summary>Solution</summary>
   
@@ -139,9 +141,11 @@ fn takes_ownership(some_string: String) {
 }
 ```
 </details>
+</blockquote>
 
-#### Exercise 3
-This time, instead of making a clone, modify the `takes_ownership` function to [return the value](https://doc.rust-lang.org/rust-by-example/fn.html) and reassign it again to the `s` variable. Variables in Rust are inmmutable by default, so you will also need to use [the `mut` keyword](https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html).
+<blockquote>
+<h5>Exercise 3</h5>
+<p>This time, instead of making a clone, modify the <b>takes_ownership</b> function to <a href="https://doc.rust-lang.org/rust-by-example/fn.html">return the value</a> and reassign it again to the <b>s</b> variable. Variables in Rust are inmmutable by default, so you will also need to use <a href="https://doc.rust-lang.org/rust-by-example/fn.html">the <b>mut</b> keyword</a>.</p>
 <details>
   <summary>Solution</summary>
   
@@ -159,6 +163,7 @@ fn takes_ownership(some_string: String) -> String {
 }
 ```
 </details>
+</blockquote>
 
 The solutions we explored in exercises 2 and 3 are not ideal. Cloning a memory value (exercise 2) has a performance penalty and we lose the ability to modify the original value. Returning the value again (exercise 3) solves those problems but makes the code very difficult to manage when we are manipulating multiple values. In the next section we will explore a better solution, called **borrowing**.
 
@@ -180,8 +185,10 @@ fn borrow(some_string: String) {
     println!("{}", some_string);
 }
 ```
-#### Exercise 4
-Use [borrowing](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html) to pass a reference of the variable `s` to the function `borrow`.
+
+<blockquote>
+<h5>Exercise 4</h5>
+<p>Use <a href="https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html">borrowing</a> to pass a reference of the variable <b>s</b> to the function <b>borrow</b>.
 <details>
   <summary>Solution</summary>
   
@@ -197,6 +204,7 @@ fn borrow(some_string: &String) {
 }
 ```
 </details>
+</blockquote>
 
 But what happens if we want to **modify** the value that we are borrowing? By default, Rust will not let you modify a borrowed value unless both the caller and the called explicitly declare it. The next example code will fail for that same reason:
 ```rust
@@ -212,8 +220,9 @@ fn borrow(some_string: &String) {
 }
 ```
 
-#### Exercise 5
-Use [a mutable reference](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html#mutable-references) to allow the function `borrow` to modify the string `s`.
+<blockquote>
+<h5>Exercise 5</h5>
+<p>Use a <a href="https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html#mutable-references">mutable reference</a> to allow the function <b>borrow</b> to modify the string <b>s</b>.
 <details>
   <summary>Solution</summary>
   
@@ -230,6 +239,7 @@ fn borrow(some_string: &mut String) { // receiving a mutable reference
 }
 ```
 </details>
+</blockquote>
 
 
 ## Resources
