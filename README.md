@@ -63,7 +63,7 @@ The concept that truly separates Rust from other languages is the memory managem
 * There can only be **one owner** at a time.
 * When the owner goes out of scope (i.e. the code block of the variable closes), the memory value will be automatically deleted.
 
-The example code below will fail because of ownership rules. Fix it using the `clone` function to make a copy of the memory value.
+The example code below will fail because of ownership rules.
 ```rust
 fn main() {
     // fixed size types go into the stack, not the heap, so this does not generate ownership problems
@@ -71,15 +71,34 @@ fn main() {
     let _y: i32 = x; // this performs a copy
     
     // dynamic size types go into the heap, we need to handle ownership
-    // Here, "s1" cannot be assigned directly to "s1" because the mamory value can only have one owner
+    // Here, "s1" cannot be assigned directly to "s2" because the mamory value can only have one owner
     let s1: String = String::from("hello");
-    let _s2: String = s1; // this line will give a compiler error, fix it using the "clone" function
+    let _s2: String = s1; // this line will give a compiler error
     
     println!("{}, world!", s1);
 }
 ```
 
-Passing a variable to a function will move or copy, just as assignment does. The example code below will fail because of ownership rules. Fix it by making the `takes_ownership` function return the value and reassign it to the `s` variable. Variables in Rust are inmmutable by default, so you will also need to use the `mut` keyword.
+#### Exercise 1
+Fix the above code by using [the `clone` function](https://doc.rust-lang.org/std/clone/trait.Clone.html#examples) to make a copy of the memory value.
+<details>
+  <summary>Solution</summary>
+  
+```rust
+fn main() {
+    let x: i32 = 5;
+    let _y: i32 = x;
+
+    let s1: String = String::from("hello");
+    // "clone" returns a copy of the memory value 
+    let _s2: String = s1.clone();
+    
+    println!("{}, world!", s1);
+}
+```
+</details>
+
+Passing a variable to a function will move or copy, just as assignment does. The example code below will fail because of ownership rules. 
 
 ```rust
 fn main() {
@@ -93,8 +112,6 @@ fn main() {
     // even more, the memory value in the heap is deleted after the call finishes
    
     // The below code will fail to compile because the ownership was transferred
-    // Fix it by making "takes_ownership" return the value to the caller...
-    // ... and reassign it to the "s" variable again (hint: you may also need the "mut" keyword)
     println!("{}, world!", s);
 
 }
@@ -105,6 +122,45 @@ fn takes_ownership(some_string: String) { // some_string comes into scope
   // memory is freed.
 ```
 
+#### Exercise 2
+Fix the above code using again the `clone` function to make a copy of the memory value.
+<details>
+  <summary>Solution</summary>
+  
+```rust
+fn main() {
+    let s = String::from("hello");  
+    takes_ownership(s.clone());             
+    println!("{}, world!", s);
+}
+
+fn takes_ownership(some_string: String) {
+    println!("{}", some_string);
+}
+```
+</details>
+
+#### Exercise 3
+This time, instead of making a clone, modify the `takes_ownership` function to [return the value](https://doc.rust-lang.org/rust-by-example/fn.html) and reassign it again to the `s` variable. Variables in Rust are inmmutable by default, so you will also need to use [the `mut` keyword](https://doc.rust-lang.org/book/ch03-01-variables-and-mutability.html).
+<details>
+  <summary>Solution</summary>
+  
+```rust
+fn main() {
+    let mut s = String::from("hello");
+    // ownership is returned to "s" after the call, so we can use the variable again
+    s = takes_ownership(s);      
+    println!("{}, world!", s);
+}
+
+fn takes_ownership(some_string: String) -> String {
+    println!("{}", some_string);
+    return some_string;
+}
+```
+</details>
+
+The solutions we explored in exercises 2 and 3 are not ideal. Cloning a memory value (exercise 2) has a performance penalty and we lose the ability to modify the original value. Returning the value again (exercise 3) solves those problems but makes the code very difficult to manage when we are manipulatin multiple values. In the next section we will explore a better solution, called **borrowing**.
 
 ## Resources
 * Text resources:
