@@ -198,6 +198,40 @@ fn borrow(some_string: &String) {
 ```
 </details>
 
+But what happens if we want to **modify** the value that we are borrowing? By default, Rust will not let you modify a borrowed value unless both the caller and the called explicitly declare it. The next example code will fail for that same reason:
+```rust
+fn main() {
+    let s = String::from("hello");  
+    borrow(&s);             
+    println!("{}, world!", s);
+}
+
+fn borrow(some_string: &String) {
+    // we are modifying the value, adding more characters to the string 
+    some_string.push_str("ooooo");
+}
+```
+
+#### Exercise 5
+Use [a mutable reference](https://doc.rust-lang.org/book/ch04-02-references-and-borrowing.html#mutable-references) to allow the function `borrow` to modify the string `s`.
+<details>
+  <summary>Solution</summary>
+  
+```rust
+fn main() {
+    // note that the variable must also be declared as mutable!
+    let mut s = String::from("hello");  
+    borrow(&mut s); // passing a mutable reference             
+    println!("{}, world!", s);
+}
+
+fn borrow(some_string: &mut String) { // receiving a mutable reference
+    some_string.push_str("ooooo");
+}
+```
+</details>
+
+
 ## Resources
 * Text resources:
     * [Getting started](https://www.rust-lang.org/learn/get-started): how to install Rust in your machine.
