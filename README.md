@@ -318,6 +318,27 @@ This workshop was focused on memory management exercises, probably the biggest p
 ### Concurrency
 The examples in this workshop shows how the Rust compiler will not allow a memory value to be modified from different scopes. But what to do if we precisely want to read/write the same memory value multiple threads? One of the core goals of rust to allow [safe concurrency](https://doc.rust-lang.org/book/ch16-00-concurrency.html). To access the same value concurrently from multiple threads at the same time, the programmer must specify the synchronization mechanism to use: either [message passing](https://doc.rust-lang.org/book/ch16-02-message-passing.html) or [by shared state](https://doc.rust-lang.org/book/ch16-03-shared-state.html).
     
+### Error handling
+[Error handling](https://doc.rust-lang.org/book/ch09-00-error-handling.html) in Rust is done by wrapping function return values in the `Result` enum type to later match the outcome from the caller:
+```rust
+use std::fs::File;
+fn main() {
+   let f = File::open("main.jpg");
+   match f {
+      Ok(f)=> {
+         println!("file found {:?}",f);
+      },
+      Err(e)=> {
+         println!("file not found \n{:?}",e);   //handled error
+      }
+   }
+   println!("end of main");
+}
+```
+To [better handle errors](https://nick.groenen.me/posts/rust-error-handling/) in Rust, there are usually two libraries that we will need:
+* [thiserror](https://crates.io/crates/thiserror) to avoid writing lots of boilerplate code on custom error declaration.
+* [anyhow](https://crates.io/crates/anyhow) to avoid boilerplate on error chaining in function calls.
+    
 ## Resources
 * Text resources:
     * [Getting started](https://www.rust-lang.org/learn/get-started): how to install Rust in your machine.
