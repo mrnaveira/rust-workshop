@@ -42,8 +42,10 @@ In summary, the main use case that make Rust attractive is when you need to deve
 
 Another important use case to mention is when you need to develop in **WebAssembly**. Rust is widely used for that purpose: has very small runtime, generates very efficient wasm code and the Rust WebAssembly tooling is very mature.
 
-## Exercises
-We will take a look a some basic examples of Rust code, to showcase the basic features of the language. For this section there is no need to have Rust installed in you machine, you can simple use [**the online rust playground**](https://play.rust-lang.org/).
+## Memory management exercises 
+We will take a look a some basic examples of Rust code, to showcase the basic features of the language. We will focus on the memory safety constraints of Rust, which constitute the bigger part of the initial learning curve of the language. 
+
+For this section there is no need to have Rust installed in you machine, you can simple use [**the online rust playground**](https://play.rust-lang.org/).
 
 ### Hello, world!
 To get things started, lets write the typical Hello World example:
@@ -310,6 +312,12 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
 </details>
 </blockquote>
 
+## Other Rust concepts
+This workshop was focused on memory management exercises, probably the biggest part of the inital learning curve. But there are other concepts of Rust worth mentioning at this point.
+
+### Concurrency
+The examples in this workshop shows how the Rust compiler will not allow a memory value to be modified from different scopes. But what to do if we precisely want to read/write the same memory value multiple threads? One of the core goals of rust to allow [safe concurrency](https://doc.rust-lang.org/book/ch16-00-concurrency.html). To access the same value concurrently from multiple threads at the same time, the programmer must specify the synchronization mechanism to use: either [message passing](https://doc.rust-lang.org/book/ch16-02-message-passing.html) or [by shared state](https://doc.rust-lang.org/book/ch16-03-shared-state.html).
+    
 ## Resources
 * Text resources:
     * [Getting started](https://www.rust-lang.org/learn/get-started): how to install Rust in your machine.
