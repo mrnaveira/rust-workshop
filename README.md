@@ -318,6 +318,59 @@ This workshop was focused on memory management exercises, probably the biggest p
 ### Concurrency
 The examples in this workshop shows how the Rust compiler will not allow a memory value to be modified from different scopes. But what to do if we precisely want to read/write the same memory value multiple threads? One of the core goals of rust to allow [safe concurrency](https://doc.rust-lang.org/book/ch16-00-concurrency.html). To access the same value concurrently from multiple threads at the same time, the programmer must specify the synchronization mechanism to use: either [message passing](https://doc.rust-lang.org/book/ch16-02-message-passing.html) or [by shared state](https://doc.rust-lang.org/book/ch16-03-shared-state.html).
     
+### Object orientation
+[Rust is object oriented](https://doc.rust-lang.org/book/ch17-00-oop.html), but there is no subtyping and no inheritance of data in Rust. The relationships between various data types are established using [traits](https://doc.rust-lang.org/book/ch17-02-trait-objects.html).
+
+```rust
+trait Speaks {
+     fn speak(&self);
+
+     fn noise(&self) -> &str;
+}
+
+trait Animal {
+    fn animal_type(&self) -> &str;
+}
+
+struct Dog {}
+
+impl Animal for Dog {
+    fn animal_type(&self) -> &str {
+        "dog"
+    }
+}  
+
+impl Speaks for Dog {
+    fn speak(&self) {
+        println!("The dog said {}", self.noise());
+    }
+
+    fn noise(&self) -> &str {
+        "woof"
+    }
+}
+
+fn main() {
+    let dog = Dog {};
+    dog.speak();
+}
+```
+    
+You can think of traits as interfaces. But unlike interfaces in languages like Java, new traits can be implemented for existing types. That means abstractions can be created after-the-fact, and applied to existing libraries.
+    
+There is also trait inheritance:
+```rust    
+trait Show {
+    fn show(&self) -> String;
+}
+
+trait Location {
+    fn location(&self) -> String;
+}
+
+trait ShowTell: Show + Location {}
+```
+
 ### Error handling
 [Error handling](https://doc.rust-lang.org/book/ch09-00-error-handling.html) in Rust is done by wrapping function return values in the `Result` enum type to later match the outcome from the caller:
 ```rust
