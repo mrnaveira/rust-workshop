@@ -244,7 +244,71 @@ fn borrow(some_string: &mut String) { // receiving a mutable reference
 To prevent data races, the Rust compiler imposes [some restrictions on mutable references](https://doc.rust-lang.org/stable/book/ch04-02-references-and-borrowing.html#mutable-references):
 * You can have only **one** mutable reference to a particular piece of data in a particular scope.
 * You **cannot mix mutable and inmmutable** references.
-* You can't return a function defined variable as a reference. You must return the ownership of the variable.
+* You can't return a function defined variable as a reference.
+
+### Lifetimes
+The Rust compiler keeps track of how long does a reference last to avoid a variable pointing to data that no longer exists (_dangling pointer_). That's called the [lifetime](https://doc.rust-lang.org/stable/book/ch10-03-lifetime-syntax.html), and begins when the reference is created and ends when the reference is last used. In most cases the lifetime is infered by the compiler so we, as developers, don't need to specify it.
+
+But when it's not possible for the compiler to statically determine when to deallocate a value, we need to manually specify the lifetime. Consider the following example:
+```rust
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+```
+The result of the `longest` function cannot be determined at compile time. This means that if either of the arguments x or y don’t live long enough to be used safely, the compiler will let you know about it.
+
+The code below will produce an error, since the lifetime of the references mismatch:
+```rust
+fn main() {
+    let string1 = String::from("a very long string");
+    let result;
+    {
+        let string2 = String::from("short string");
+        result = longest(string1.as_str(), string2.as_str());
+    }
+    println!("The longest string is {}", result);
+}
+
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+```
+<blockquote>
+<h5>Exercise 6</h5>
+<p>Modify the previous code to fix the compiler error about lifetemes, making the variables <b>string1</b> and <b>string2</b> be in the same scope.</p>
+<details>
+  <summary>Solution</summary>
+  
+```rust
+fn main() {
+    // both strings have the same lifetime, so they can be safely called by "longest" in any shorter scope
+    let string1 = String::from("a very long string");
+    let string2 = String::from("short string");
+    let result;
+    {
+        result = longest(string1.as_str(), string2.as_str());
+    }
+    println!("The longest string is {}", result);
+}
+
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() {
+        x
+    } else {
+        y
+    }
+}
+```
+</details>
+</blockquote>
 
 ## Resources
 * Text resources:
