@@ -241,6 +241,10 @@ fn borrow(some_string: &mut String) { // receiving a mutable reference
 </details>
 </blockquote>
 
+To prevent data races, the Rust compiler imposes [some restrictions on mutable references](https://doc.rust-lang.org/stable/book/ch04-02-references-and-borrowing.html#mutable-references):
+* You can have only **one** mutable reference to a particular piece of data in a particular scope.
+* You **cannot mix mutable and inmmutable** references.
+* You can't return a function defined variable as a reference. You must return the ownership of the variable.
 
 ## Resources
 * Text resources:
