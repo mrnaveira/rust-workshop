@@ -21,14 +21,14 @@ To address this, Rust was designed by Mozilla Research's Graydon Hore, with cont
 Today, [Rust is considered the most-loved language among developers](https://insights.stackoverflow.com/survey/2021#technology-most-loved-dreaded-and-wanted) and is [used in production by many companies and products](https://www.rust-lang.org/production/users), including Mozilla Firefox, multiple Microsoft products, Dropbox, Discord, Coursera, Tor and recently even [in the Linux Kernel](https://security.googleblog.com/2021/04/rust-in-linux-kernel.html).
 
 Rust was able to achieve **top performance and top safety** at the same time. But of course nothing is perfect, and Rust has its downsides as well.
-The main downside of Rust is language ergonomics: assume that **any program written in Rust will be more difficult to write and understand** that if it was written in a high-level language. Also, the **learning curve** is very hard in Rust, as new developers need to understand memory management concepts like *ownership*, *borrowing* or *lifetimes*. 
+The main downside of Rust is language ergonomics: assume that **any program written in Rust will be more difficult to write and understand** that if it was written in a high-level language. Also, the **learning curve** is very hard in Rust, as new developers need to understand memory management concepts like [ownership](https://doc.rust-lang.org/stable/book/ch04-00-understanding-ownership.html), [borrowing](https://doc.rust-lang.org/stable/book/ch04-02-references-and-borrowing.html) or [lifetimes](https://doc.rust-lang.org/stable/book/ch10-03-lifetime-syntax.html).
 
 ### Rust vs Go
 
 Go is much simpler and has a cleaner syntax than Rust, has good performance and is considered very safe (handles memory automatically and the runtime performs many security checks). 
 
 So, why would you use Rust instead? There are two situations that could make it more appropriate:
-* You need the best **performance** possible. As many benchmarks show, Rust is considerably faster than Go in most cases. An example of this is why [Discord switched from Go to Rust due to performance issues with Go's garbage collector](https://blog.discord.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f).
+* You need the best **performance** possible. As many [benchmarks show](https://medium.com/star-gazers/benchmarking-low-level-i-o-c-c-rust-golang-java-python-9a0d505f85f7), Rust is considerably faster than Go in most cases. An example of this is why [Discord switched from Go to Rust due to performance issues with Go's garbage collector](https://blog.discord.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f).
 * Your application is extremely concurrent and you want the best possible **memory safety**. The Rust compiler checks are more exhaustive, as [the race condition issue that Microsoft found in Kubernetes Helm shows](https://msrc-blog.microsoft.com/2020/04/29/the-safety-boat-kubernetes-and-rust/).
 
 
@@ -416,6 +416,7 @@ It's important to mention that nowadays, most Rust developers still use [the Tok
     * [Rust By Example](https://doc.rust-lang.org/rust-by-example/): a collection of runnable examples that illustrate various Rust concepts.
     * [The Rust Programming Language](https://doc.rust-lang.org/book/): the official reference book.
     * [Async: What is blocking?](https://ryhl.io/blog/async-what-is-blocking/): a very good introduction to Async programming in Rust.
+    * [Benchmarking low-level I/O: C, C++, Rust, Golang, Java, Python](https://medium.com/star-gazers/benchmarking-low-level-i-o-c-c-rust-golang-java-python-9a0d505f85f7): an up-to-date and very complete benchmark comparison of Rust and other languages.
 * YouTube Videos:
     * [Rust: A Language for the Next 40 Years](): Carol Nichols, Rust Core Team developer, explains the motivation for the creation of Rust.
     * [Rust at Microsoft](https://www.youtube.com/watch?v=NQBVUjdkLAA): Ryan Levick explains why they, at Microsoft, are becoming more interested in Rust and why they see it as a potential game changer.
