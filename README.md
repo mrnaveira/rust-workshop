@@ -391,12 +391,31 @@ fn main() {
 To [better handle errors](https://nick.groenen.me/posts/rust-error-handling/) in Rust, there are usually two libraries that we will need:
 * [thiserror](https://crates.io/crates/thiserror) to avoid writing lots of boilerplate code on custom error declaration.
 * [anyhow](https://crates.io/crates/anyhow) to avoid boilerplate on error chaining in function calls.
+
+### Asynchronous Programming
+Asynchronous Programming is tipically used when we want to run many instances of a _small_ function concurrently (for example, listening to network requests), but we want to avoid creating OS thread for each execution to avoid the performance overhead. But keep in mind that [Async code should never spend a long time without reaching an `await`](https://ryhl.io/blog/async-what-is-blocking/) because each execution will block the thread (i.e. avoid expensive CPU processing), if that's the case it's better to stick to threads.
+
+In Rust, [asynchronous functions return a `Future` value](https://rust-lang.github.io/async-book/01_getting_started/02_why_async.html#async-in-rust-vs-other-languages) similar to _promises_ in JavaScript. We can then specify how and when to block the thread execution.
+```rust
+async fn get_two_sites_async() {
+    // Create two different "futures" which, when run to completion,
+    // will asynchronously download the webpages.
+    let future_one = download_async("https://www.foo.com");
+    let future_two = download_async("https://www.bar.com");
+
+    // Run both futures to completion at the same time.
+    join!(future_one, future_two);
+}
+```    
+
+It's important to mention that nowadays, most Rust developers still use [the Tokio runtime](https://tokio.rs/) instead of the official packages, mainly because it was released earlier and still has more features. But this is an evolving situation, so expect many examples and packages to use one or the other.
     
 ## Resources
 * Text resources:
     * [Getting started](https://www.rust-lang.org/learn/get-started): how to install Rust in your machine.
     * [Rust By Example](https://doc.rust-lang.org/rust-by-example/): a collection of runnable examples that illustrate various Rust concepts.
     * [The Rust Programming Language](https://doc.rust-lang.org/book/): the official reference book.
+    * [Async: What is blocking?](https://ryhl.io/blog/async-what-is-blocking/): a very good introduction to Async programming in Rust.
 * YouTube Videos:
     * [Rust: A Language for the Next 40 Years](): Carol Nichols, Rust Core Team developer, explains the motivation for the creation of Rust.
     * [Rust at Microsoft](https://www.youtube.com/watch?v=NQBVUjdkLAA): Ryan Levick explains why they, at Microsoft, are becoming more interested in Rust and why they see it as a potential game changer.
