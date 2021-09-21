@@ -28,7 +28,7 @@ The main downside of Rust is language ergonomics: assume that **any program writ
 Go is much simpler and has a cleaner syntax than Rust, has good performance and is considered very safe (handles memory automatically and the runtime performs many security checks). 
 
 So, why would you use Rust instead? There are two situations that could make it more appropriate:
-* You need the best **performance** possible. As many [benchmarks show](https://medium.com/star-gazers/benchmarking-low-level-i-o-c-c-rust-golang-java-python-9a0d505f85f7), Rust is considerably faster than Go in most cases. An example of this is why [Discord switched from Go to Rust due to performance issues with Go's garbage collector](https://blog.discord.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f).
+* You need the best **performance** possible. As many [benchmarks show](https://medium.com/star-gazers/benchmarking-low-level-i-o-c-c-rust-golang-java-python-9a0d505f85f7), Rust is considerably faster than Go in most cases. Also, the performance is more predictable across time. An example of this is why [Discord switched from Go to Rust due to performance issues with Go's garbage collector](https://blog.discord.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f).
 * Your application is extremely concurrent and you want the best possible **memory safety**. The Rust compiler checks are more exhaustive, as [the race condition issue that Microsoft found in Kubernetes Helm shows](https://msrc-blog.microsoft.com/2020/04/29/the-safety-boat-kubernetes-and-rust/).
 
 
