@@ -27,7 +27,7 @@ The main downside of Rust is language ergonomics: assume that **any program writ
 
 Rust and Go are often compared as they both have very similar goals: safe and fast compiled languages with focus on concurrency.
 
-As many benchmarks show, **Rust significantly out-performs Go** in a multitude of tasks, including [CPU computation](https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-go.html) as well as [I/O bound operations](ttps://medium.com/star-gazers/benchmarking-low-level-i-o-c-c-rust-golang-java-python-9a0d505f85f7). An important point is that **Rust performance is more stable** and predictable across time. An very good example of this is why [Discord switched from Go to Rust due to performance issues with Go's garbage collector](https://blog.discord.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f).
+As many benchmarks show, **Rust significantly out-performs Go** in a multitude of tasks, including [CPU computation](https://benchmarksgame-team.pages.debian.net/benchmarksgame/fastest/rust-go.html) as well as [I/O bound operations](https://medium.com/star-gazers/benchmarking-low-level-i-o-c-c-rust-golang-java-python-9a0d505f85f7). An important point is that **Rust performance is more stable** and predictable across time. A very good example of this is why [Discord switched from Go to Rust due to performance issues with Go's garbage collector](https://blog.discord.com/why-discord-is-switching-from-go-to-rust-a190bbca2b1f).
 
 Go is considered a very safe language, but in this aspect the **Rust compiler checks are even more exhaustive**, as [the race condition issue that Microsoft found in Kubernetes Helm shows](https://msrc-blog.microsoft.com/2020/04/29/the-safety-boat-kubernetes-and-rust/).
 
