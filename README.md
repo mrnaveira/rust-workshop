@@ -411,7 +411,7 @@ async fn get_two_sites_async() {
 }
 ```    
 
-It's important to mention that nowadays, most Rust developers still use [the Tokio runtime](https://tokio.rs/) instead of the official packages, mainly because it was released earlier and still has more features. But this is an evolving situation, so expect many examples and packages to use one or the other.
+Rust currently provides only the bare essentials for writing async code. A full async **runtime** is not yet provided in the standard library. In the meantime, community-provided async ecosystems fill in these gaps, being [Tokio](https://tokio.rs/) the most widely used.
     
 ## Resources
 * Text resources:
