@@ -1,5 +1,7 @@
 # rust-workshop
 
+This is the written version of the Rust workshop given at [Accenture Interactive](https://www.accenture.com/us-en/about/accenture-interactive-index) on September 22, 2021 to introduce the language and showcase its features.
+
 ## Introduction
 
 ### Memory safety matters
